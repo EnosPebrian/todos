@@ -9,8 +9,8 @@ export default function ProtectedPage({
   const navigate = useNavigate();
   const userid = JSON.parse(localStorage.getItem("todos-auth"));
   useEffect(() => {
-    if (needLogin && !userid) return navigate(`/login`);
-    if (guestOnly && userid) return navigate(`/dashboard`);
+    if (needLogin && !userid) navigate(`/login`);
+    else if (guestOnly && userid) navigate(`/dashboard`);
   }, [children]);
 
   return children;

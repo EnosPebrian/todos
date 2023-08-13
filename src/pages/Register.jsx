@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import * as YupPassword from "yup-password";
 import { Formik, useFormik } from "formik";
 import api from "../json-server/api";
-import { useEffect, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 
 export const Register = () => {
@@ -36,12 +35,6 @@ export const Register = () => {
     const res = await api.get(`/users?email=${values.email}`);
     return res.data;
   }
-  const new_todo = {
-    id: "",
-    email: "",
-    tasks: [],
-    subtasks: {},
-  };
 
   YupPassword(Yup);
   const formik = useFormik({
@@ -76,7 +69,6 @@ export const Register = () => {
 
         const temp = { ...values };
         delete temp["confirmpassword"];
-        temp.email = temp.email;
         await api.post(`users`, temp);
       } catch (err) {
         console.log(err);

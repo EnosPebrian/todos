@@ -7,15 +7,20 @@ import * as YupPassword from "yup-password";
 import { Formik, useFormik } from "formik";
 import api from "../json-server/api";
 import { useToast } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { constant } from "../redux/constant";
+import { userLogin } from "../redux/middleware/auth-middleware";
 
 export const Login = () => {
   const toast = useToast();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  function toastLoginFailed() {
+  function toastLoginFailed(msg) {
     return toast({
       title: `Invalid email or password`,
       status: "error",
+      description: msg,
       isClosable: true,
       duration: 1500,
       position: "top",
@@ -32,6 +37,8 @@ export const Login = () => {
     });
   }
 
+  function loginbygoogle() {}
+
   YupPassword(Yup);
   const formik = useFormik({
     initialValues: { email: "", password: "" },
@@ -40,19 +47,20 @@ export const Login = () => {
       password: Yup.string().required(),
     }),
     onSubmit: async (values) => {
-      const res = await api.get("users", {
-        params: {
-          email: values.email.toLowerCase(),
-          password: values.password,
-        },
-      });
-      console.log(res.data[0]);
-      const user = res.data[0];
-      if (user) return toastLoginFailed();
-      localStorage.setItem("todos-auth", user.id);
-      
-      toastLoginSuccess();
-      setTimeout(() => navigate(`/dashboard/${user.fullname}`), 1500);
+      values.email = values.email.toLowerCase();
+      const result = await dispatch(userLogin(values));
+      if (result === constant.success) {
+        const res = await api.get(
+          `users/${JSON.parse(localStorage.getItem("todos-auth"))}`
+        );
+        const fullname = res.data.fullname;
+        setTimeout(
+          () => navigate(`/dashboard/${fullname.split(" ").join("")}`),
+          1500
+        );
+        return toastLoginSuccess();
+      }
+      return toastLoginFailed(result);
     },
   });
   return (
@@ -103,13 +111,22 @@ export const Login = () => {
                   Submit
                 </Button>
               </div>
-              <div className="mt-3">
+              <div className="my-3">
                 Don't have an account?{" "}
                 <b>
                   <a href="/register" className="text-decoration-none">
                     Sign Up
                   </a>
                 </b>
+              </div>
+              <div className="d-flex justify-content-center">
+                <Button
+                  variant="primary"
+                  className="w-100"
+                  onClick={loginbygoogle}
+                >
+                  Login with Google
+                </Button>
               </div>
             </Form>
           </Formik>

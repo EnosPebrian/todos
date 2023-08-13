@@ -1,3 +1,4 @@
+import Redirect from "../components/redirectdashboard";
 import Dashboard from "../pages/Dashboard";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
@@ -32,6 +33,14 @@ export const routes = [
     (
       <ProtectedPage needLogin={true}>
         <Dashboard />
+      </ProtectedPage>
+    )
+  ),
+  new Routeclass(
+    "/dashboard",
+    (
+      <ProtectedPage needLogin={true}>
+        <Redirect />
       </ProtectedPage>
     )
   ),

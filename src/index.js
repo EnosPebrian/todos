@@ -7,14 +7,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { configureStore } from "@reduxjs/toolkit";
+import { reducers } from "./redux";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import AuthProvider from "./HOC/authprovider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const store = configureStore()
+const store = configureStore({ reducer: reducers, middleware: [thunk] });
 root.render(
   <React.StrictMode>
     <ChakraProvider>
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </Provider>
       </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>
