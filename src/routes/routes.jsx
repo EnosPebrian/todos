@@ -44,4 +44,12 @@ export const routes = [
       </ProtectedPage>
     )
   ),
+  new Routeclass(
+    "/",
+    (
+      <ProtectedPage needLogin={true}>
+        <Redirect />
+      </ProtectedPage>
+    )
+  ),
 ];

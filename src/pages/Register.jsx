@@ -1,5 +1,5 @@
 import { Card, Container, Form } from "react-bootstrap";
-import { SVGRegister } from "../components/SVG-register";
+import { SVGRegister } from "../components/SVG";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
