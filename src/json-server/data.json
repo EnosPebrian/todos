@@ -1,0 +1,105 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullname": "RNT",
+      "email": "RNT@gmail.com",
+      "password": "RNT123"
+    },
+    {
+      "id": 2,
+      "fullname": "RNY",
+      "email": "RNY@gmail.com",
+      "password": "RNY123"
+    },
+    {
+      "id": 3,
+      "fullname": "RNX",
+      "email": "RNX@gmail.com",
+      "password": "RNX123"
+    },
+    {
+      "fullname": "EnosoneS",
+      "email": "enospebrian1@gmail.com",
+      "password": "EnosoneS1!",
+      "id": 4
+    },
+    {
+      "fullname": "Admin",
+      "email": "admin@mail.com",
+      "password": "Admin123!",
+      "id": 5
+    },
+    {
+      "fullname": "TEST",
+      "email": "test@mail.com",
+      "password": "Test123!",
+      "id": 6
+    },
+    {
+      "fullname": "OTOKO",
+      "email": "otoko@mail.com",
+      "password": "Otoko123!",
+      "id": 7
+    },
+    {
+      "fullname": "OTAKA",
+      "email": "otaka@mail.com",
+      "password": "Otaka123!",
+      "id": 8
+    }
+  ],
+  "taskTodo": [
+    {
+      "id": 1,
+      "email": "RNT@gmail.com",
+      "task_id": 1,
+      "task": "Mencangkul",
+      "status": "ongoing"
+    },
+    {
+      "id": 2,
+      "email": "RNT@gmail.com",
+      "task_id": 2,
+      "task": "Memasak",
+      "status": "ongoing"
+    }
+  ],
+  "subtaskTodo": [
+    {
+      "id": 1,
+      "email": "RNT@gmail.com",
+      "task_id": 1,
+      "subtask": "disiram dulu",
+      "status": "ongoing"
+    },
+    {
+      "id": 2,
+      "email": "RNT@gmail.com",
+      "task_id": 1,
+      "subtask": "jangan lupa dibajak dulu",
+      "status": "ongoing"
+    },
+    {
+      "id": 3,
+      "email": "RNT@gmail.com",
+      "task_id": 2,
+      "subtask": "cuci bahan",
+      "status": "ongoing"
+    },
+    {
+      "id": 4,
+      "email": "RNT@gmail.com",
+      "task_id": 2,
+      "subtask": "jemur bahan",
+      "status": "ongoing"
+    },
+    {
+      "id": 5,
+      "email": "RNT@gmail.com",
+      "task_id": 2,
+      "subtask": "haluskan bahan",
+      "status": "ongoing"
+    }
+  ]
+}
