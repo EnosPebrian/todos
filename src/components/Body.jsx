@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useFormik } from "formik";
-import { TaskTodoList } from "./TaskTodoLIST";
+import { TaskTodoList } from "./TaskTodoList";
 export const MainBody = () => {
   const [todo, setTodo] = useState([]);
   const userSelector = useSelector((state) => state.auth);
