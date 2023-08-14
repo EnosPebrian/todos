@@ -17,7 +17,7 @@ export const HeaderNavbar = () => {
     return navigate("/login");
   };
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: "#ebc18a" }}>
       <Container>
         <Navbar.Brand href="/dashboard">TOLD YOU</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

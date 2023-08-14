@@ -54,7 +54,7 @@
       "id": 1,
       "email": "rnt@gmail.com",
       "task": "Mencangkul",
-      "status": "ongoing",
+      "status": true,
       "datestart": "2023-08-13",
       "dateend": "",
       "timestart": "07:00:00",
@@ -110,6 +110,30 @@
       "deadline": "",
       "deadlinetime": "",
       "id": 5
+    },
+    {
+      "email": "rnt@gmail.com",
+      "task": "Deploy event-ticket-management",
+      "status": "ongoing",
+      "datestart": "2023-08-14",
+      "dateend": "",
+      "timestart": "22:32:28",
+      "timeend": "",
+      "deadline": "",
+      "deadlinetime": "",
+      "id": 9
+    },
+    {
+      "email": "rnt@gmail.com",
+      "task": "ngasal2",
+      "status": "ongoing",
+      "datestart": "2023-08-14",
+      "dateend": "",
+      "timestart": "23:20:57",
+      "timeend": "",
+      "deadline": "",
+      "deadlinetime": "",
+      "id": 12
     }
   ],
   "subtaskTodo": [
@@ -177,6 +201,32 @@
       "deadlinetime": "",
       "timestart": "07:00:00",
       "timeend": ""
+    },
+    {
+      "task_id": 2,
+      "email": "rnt@gmail.com",
+      "subtask": "tumis bumbu halus",
+      "status": "ongoing",
+      "datestart": "2023-08-14",
+      "dateend": "",
+      "timestart": "22:26:35",
+      "timeend": "",
+      "deadline": "",
+      "deadlinetime": "",
+      "id": 7
+    },
+    {
+      "task_id": 9,
+      "email": "rnt@gmail.com",
+      "subtask": "Set json server",
+      "status": "ongoing",
+      "datestart": "2023-08-14",
+      "dateend": "",
+      "timestart": "22:32:41",
+      "timeend": "",
+      "deadline": "",
+      "deadlinetime": "",
+      "id": 8
     }
   ]
 }

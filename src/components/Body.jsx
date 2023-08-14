@@ -48,13 +48,9 @@ export const MainBody = () => {
           </Card.Body>
           <ListGroup className="list-group-flush">
             {todo.map((task, idx) => (
-              <TaskTodoList value={task} idx={idx} />
+              <TaskTodoList value={task} idx={idx} fetchTask={fetchTask} />
             ))}
           </ListGroup>
-          <Card.Body>
-            <Card.Link href="#">Card Link</Card.Link>
-            <Card.Link href="#">Another Link</Card.Link>
-          </Card.Body>
         </Card>
         <ModalBody
           handleClose={handleClose}

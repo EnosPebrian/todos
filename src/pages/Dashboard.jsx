@@ -1,4 +1,5 @@
 import { MainBody } from "../components/Body";
+import Footer from "../components/Footer";
 import { HeaderNavbar } from "../components/HeaderNavbar";
 
 export default function Dashboard() {
@@ -6,6 +7,7 @@ export default function Dashboard() {
     <>
       <HeaderNavbar />
       <MainBody />
+      <Footer />
     </>
   );
 }
