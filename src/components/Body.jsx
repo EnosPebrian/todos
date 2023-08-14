@@ -5,14 +5,14 @@ import { SVGjam, Svg_plus } from "../components/SVG";
 import { useSelector } from "react-redux";
 import api from "../json-server/api";
 import { useEffect, useState } from "react";
-import { TaskTodoList } from "./TaskTodoList";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useFormik } from "formik";
+import { TaskTodoList } from "./taskTodoLIST";
 export const MainBody = () => {
   const [todo, setTodo] = useState([]);
-
+  const userSelector = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,7 +21,8 @@ export const MainBody = () => {
       .get(`taskTodo`, { params: { email: userSelector?.email } })
       .then((res) => {
         setTodo(res.data);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -55,28 +56,42 @@ export const MainBody = () => {
             <Card.Link href="#">Another Link</Card.Link>
           </Card.Body>
         </Card>
-        <ModalBody handleClose={handleClose} show={show} />
+        <ModalBody
+          handleClose={handleClose}
+          show={show}
+          fetchTask={fetchTask}
+        />
       </Container>
     </>
   );
 };
 
-function ModalBody({ handleClose, show }) {
+function ModalBody({ handleClose, show, fetchTask }) {
   const userSelector = useSelector((state) => state.auth);
   const formik = useFormik({
     initialValues: {
-      email: userSelector.email,
+      email: "",
       task: "",
-      status: "ongoing",
-      datestart: new Date().toISOString().split("T")[0],
+      status: "",
+      datestart: "",
       dateend: "",
-      timestart: new Date().toString().split(" ")[4],
+      timestart: "",
       timeend: "",
       deadline: "",
       deadlinetime: "",
     },
-    enableReinitialize: true,
+    onSubmit: async (values) => {
+      const temp = { ...values };
+      temp.datestart = new Date().toISOString().split("T")[0];
+      temp.timestart = new Date().toString().split(" ")[4];
+      temp.email = userSelector.email;
+      temp.status = "ongoing";
+      await api.post("taskTodo", temp).catch((err) => console.log(err));
+      fetchTask();
+      handleClose();
+    },
   });
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -85,12 +100,36 @@ function ModalBody({ handleClose, show }) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="task">
-              <Form.Label>task</Form.Label>
+            <Form.Group className="mb-3">
+              <Form.Label>Task</Form.Label>
               <Form.Control
                 as="textarea"
+                id="task"
+                name="task"
                 placeholder="write something to do"
                 autoFocus
+                style={{ height: "13rem" }}
+                onChange={formik.handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Deadline date</Form.Label>
+              <Form.Control
+                type="date"
+                name="deadline"
+                id="deadline"
+                autoFocus
+                onChange={formik.handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Deadline time</Form.Label>
+              <Form.Control
+                type="time"
+                name="dedlinetime"
+                id="deadlinetime"
+                autoFocus
+                onChange={formik.handleChange}
               />
             </Form.Group>
           </Form>
@@ -99,8 +138,8 @@ function ModalBody({ handleClose, show }) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={formik.handleSubmit}>
+            Add new task
           </Button>
         </Modal.Footer>
       </Modal>
